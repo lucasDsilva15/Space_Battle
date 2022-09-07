@@ -3,10 +3,9 @@
 //prompt and console log history
 //add retreat or keep going options
 
-//create a function for battle sequence to be called again for each battle
-//dont do while loop
+
 //use nested if statements to have messages appear and update numbers over time
-//think about code for multiple ships (enemyship[i])
+//think about code for multiple ships (enemyship[i] )
 
 let stats = document.querySelector('.playerStats')
 let enemyStats = document.querySelector('.enemyStats')
@@ -35,7 +34,7 @@ setTimeout(() => {
 //function that starts game
 function startGame(){
     confirm('Great! Enemies are invading')
-
+ // for loop to itierate through enemy ships
     if (confirm('One of the ships is approaching, do we attack?')){
         battle()
    } else {
@@ -47,33 +46,43 @@ function startGame(){
 }
 
 function battle(){
-    while(spaceShip.Hull > 0|| enemyShip.Hull > 0){
+   
         if(Math.random() < spaceShip.Accuracy){
             enemyShip.Hull-= spaceShip.Firepower  
-            
-            if (confirm(`Direct hit, you dealt ${spaceShip.Firepower}damage`||`Direct hit, you dealt ${spaceShip.Firepower}damage`) == false){
-            updateEnemy()  
-            }
+             
+            console.log(`Direct hit, you dealt ${spaceShip.Firepower}damage`)
+           
         }else{
-            confirm(`You missed!`)
+            console.log('You missed')
         }
         if(Math.random() < enemyShip.Accuracy){
             spaceShip.Hull-=enemyShip.Firepower
             
-            if (confirm (`Direct hit, the enemy dealt ${enemyShip.Firepower}damage`) || confirm(`Direct hit, the enemy dealt ${enemyShip.Firepower}damage`) == false){
-              updateSelf()  
-            }
+            console.log(`Direct hit, the enemy dealt ${enemyShip.Firepower}damage`)
             
         }else{
-            confirm(`The enemy missed!`)
+            console.log('You missed')
         }
     if (enemyShip.Hull <= 0) {
         enemyShip.Hull = 0
         updateEnemy()
-        break;
+        confirm("You've Won")
+        
+        } else if (spaceShip.Hull <= 0){
+        confirm('You died a heros death')
+        } else{
+            updateSelf()
+            updateEnemy()
+            setTimeout (() => {
+                if (confirm('The enemy still stands, another attack is iminent') == true){
+                    battle()
+                } else {
+                    battle()
+                }
+            }, '1000')
         }
     }  
-}
+
 
 
 
