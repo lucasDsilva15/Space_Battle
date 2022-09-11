@@ -73,7 +73,6 @@ align-items: center;
     border: 1px solidblack;
     width: 30vw;
     height: 35vh;
-    background-image: url("/images/enemy.gif");
     background-size: cover ;
     background-position: center;
     background-repeat: no-repeat;
@@ -95,3 +94,19 @@ align-items: center;
     box-shadow: 0px 0px 20px 10px white;
 
 }
+.shake{
+    animation: shake .75s;
+}
+@keyframes shake {
+    0% { transform: translateX(0) }
+    10% {transform: translateX(5px) }
+    20% { transform: translateX(-5px) }
+    30% { transform: translateX(5px) }
+    40% { transform: translateX(-5px) }
+    50% { transform: translateX(5px) }
+    60% { transform: translateX(-5px) }
+    70% { transform: translateX(5px) }
+    80% { transform: translateX(-5px) }
+    90% { transform: translateX(5px) }
+    100% { transform: translateX(0px) }
+   }
